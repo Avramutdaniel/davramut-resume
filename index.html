@@ -41,34 +41,6 @@
             body { padding: 8mm 12mm; }
             @page { margin: 8mm; }
             .skill-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .download-btn { display: none; }
-        }
-
-        .download-btn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            padding: 12px 22px;
-            border-radius: 30px;
-            font-family: 'Inter', sans-serif;
-            font-size: 10pt;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 16px rgba(0, 120, 212, 0.35);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: transform 0.15s, box-shadow 0.15s;
-            z-index: 1000;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.45);
         }
 
         /* Header */
@@ -574,16 +546,6 @@
             </div>
         </div>
     </section>
-
-
-    <button class="download-btn" onclick="window.print()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        Download CV
-    </button>
 
 </body>
 </html>

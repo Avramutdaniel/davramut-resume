@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Europass CV – Daniel-Cristian Avramut</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+        :root {
+            --ep-blue: #003399;
+            --ep-yellow: #FFCC00;
+            --ep-light-blue: #e8edf8;
+            --ep-border: #c8d0e0;
+            --ep-text: #1a1a1a;
+            --ep-label: #003399;
+            --ep-section-bg: #003399;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 9.5pt;
+            color: var(--ep-text);
+            background: #f0f0f0;
+            line-height: 1.5;
+        }
+
+        .page {
+            max-width: 210mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+        }
+
+        @media print {
+            body { background: white; }
+            .page { margin: 0; box-shadow: none; }
+            .download-btn { display: none; }
+            @page { margin: 0; size: A4; }
+        }
+
+        /* ── Download Button ── */
+        .download-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--ep-blue);
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 10pt;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,51,153,0.35);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: transform 0.15s, box-shadow 0.15s;
+            z-index: 1000;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,51,153,0.45);
+        }
+
+        /* ── Top Banner ── */
+        .ep-banner {
+            background: var(--ep-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px 8px 20px;
+        }
+
+        .ep-banner .ep-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ep-banner .ep-logo .stars {
+            font-size: 13pt;
+            letter-spacing: 1px;
+            color: var(--ep-yellow);
+        }
+
+        .ep-banner .ep-logo .wordmark {
+            font-size: 10pt;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .ep-banner .ep-cv-label {
+            font-size: 9pt;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        /* ── Header ── */
+        .ep-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0;
+            padding: 22px 28px 16px 28px;
+            border-bottom: 3px solid var(--ep-blue);
+        }
+
+        .ep-header-photo {
+            width: 90px;
+            height: 110px;
+            background: var(--ep-light-blue);
+            border: 1px solid var(--ep-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #999;
+            font-size: 8pt;
+            text-align: center;
+        }
+
+        .ep-header-info {
+            flex: 1;
+            padding-left: 22px;
+        }
+
+        .ep-header-info h1 {
+            font-size: 20pt;
+            font-weight: 700;
+            color: var(--ep-blue);
+            letter-spacing: -0.3px;
+            line-height: 1.15;
+            margin-bottom: 3px;
+        }
+
+        .ep-header-info .ep-jobtitle {
+            font-size: 10.5pt;
+            font-weight: 400;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 14px;
+        }
+
+        .ep-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px 30px;
+        }
+
+        .ep-contact-row {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            font-size: 9pt;
+        }
+
+        .ep-contact-row .ep-icon {
+            color: var(--ep-blue);
+            font-size: 9.5pt;
+            width: 14px;
+            flex-shrink: 0;
+        }
+
+        .ep-contact-row a {
+            color: var(--ep-blue);
+            text-decoration: none;
+        }
+
+        /* ── Section ── */
+        .ep-section {
+            padding: 0;
+        }
+
+        .ep-section-title {
+            background: var(--ep-blue);
+            color: white;
+            font-size: 8.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 28px;
+        }
+
+        .ep-section-body {
+            padding: 14px 28px;
+            border-bottom: 1px solid var(--ep-border);
+        }
+
+        /* ── Two-column row used throughout ── */
+        .ep-row {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 0 18px;
+            margin-bottom: 12px;
+        }
+
+        .ep-row:last-child { margin-bottom: 0; }
+
+        .ep-row-label {
+            font-weight: 600;
+            color: var(--ep-label);
+            font-size: 9pt;
+            padding-top: 1px;
+        }
+
+        .ep-row-value {
+            font-size: 9.5pt;
+            color: var(--ep-text);
+        }
+
+        /* ── Work Experience entry ── */
+        .ep-job {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 0 18px;
+            margin-bottom: 18px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed var(--ep-border);
+        }
+
+        .ep-job:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .ep-job-dates {
+            font-size: 9pt;
+            color: var(--ep-label);
+            font-weight: 600;
+            padding-top: 2px;
+        }
+
+        .ep-job-content h3 {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: var(--ep-text);
+            margin-bottom: 2px;
+        }
+
+        .ep-job-content .ep-employer {
+            font-size: 9.5pt;
+            color: var(--ep-blue);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .ep-job-content .ep-employer span {
+            font-weight: 400;
+            color: #666;
+        }
+
+        .ep-job-content ul {
+            margin-left: 15px;
+            margin-top: 5px;
+        }
+
+        .ep-job-content li {
+            font-size: 9pt;
+            color: #444;
+            margin-bottom: 3.5px;
+            text-align: justify;
+        }
+
+        .ep-job-content li strong {
+            color: var(--ep-text);
+            font-weight: 600;
+        }
+
+        /* ── Language table ── */
+        .lang-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+            margin-top: 8px;
+        }
+
+        .lang-table thead tr {
+            background: var(--ep-light-blue);
+        }
+
+        .lang-table th {
+            font-weight: 700;
+            color: var(--ep-blue);
+            padding: 5px 8px;
+            border: 1px solid var(--ep-border);
+            text-align: center;
+            font-size: 8.5pt;
+        }
+
+        .lang-table th.lang-name-col {
+            text-align: left;
+            width: 140px;
+        }
+
+        .lang-table td {
+            padding: 5px 8px;
+            border: 1px solid var(--ep-border);
+            text-align: center;
+            color: #444;
+        }
+
+        .lang-table td.lang-name {
+            text-align: left;
+            font-weight: 600;
+            color: var(--ep-text);
+        }
+
+        .lang-table .subheader td {
+            background: #f5f7fb;
+            font-size: 8pt;
+            font-weight: 600;
+            color: #555;
+            text-align: center;
+        }
+
+        /* ── Skills grid ── */
+        .ep-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4px 30px;
+        }
+
+        .ep-skill-item {
+            display: flex;
+            font-size: 9pt;
+            padding: 3px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .ep-skill-item .sl {
+            font-weight: 600;
+            color: var(--ep-blue);
+            min-width: 100px;
+            flex-shrink: 0;
+        }
+
+        .ep-skill-item .sv {
+            color: #444;
+        }
+
+        /* ── Summary ── */
+        .ep-summary {
+            font-size: 9.5pt;
+            color: #444;
+            text-align: justify;
+            line-height: 1.65;
+        }
+
+        .ep-summary strong {
+            color: var(--ep-text);
+            font-weight: 600;
+        }
+
+        /* ── Footer ── */
+        .ep-footer {
+            padding: 10px 28px;
+            text-align: right;
+            font-size: 8pt;
+            color: #aaa;
+            border-top: 1px solid var(--ep-border);
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- Banner -->
+    <div class="ep-banner">
+        <div class="ep-logo">
+            <span class="stars">★ ★ ★ ★ ★<br>★ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ★<br>★ ★ ★ ★ ★</span>
+            <span class="wordmark">Europass</span>
+        </div>
+        <span class="ep-cv-label">Curriculum Vitae</span>
+    </div>
+
+    <!-- Header / Personal Info -->
+    <div class="ep-header">
+        <div class="ep-header-photo">Photo</div>
+        <div class="ep-header-info">
+            <h1>Daniel-Cristian Avramut</h1>
+            <div class="ep-jobtitle">Senior Azure DevOps Engineer</div>
+            <div class="ep-contact-grid">
+                <div class="ep-contact-row">
+                    <span class="ep-icon">&#9742;</span>
+                    <span>+40 741 640 401</span>
+                </div>
+                <div class="ep-contact-row">
+                    <span class="ep-icon">&#9993;</span>
+                    <a href="mailto:daniel.avramut@smartechcs.com">daniel.avramut@smartechcs.com</a>
+                </div>
+                <div class="ep-contact-row">
+                    <span class="ep-icon">&#9679;</span>
+                    <span>Cluj-Napoca, Romania</span>
+                </div>
+                <div class="ep-contact-row">
+                    <span class="ep-icon">&#9679;</span>
+                    <span>Nationality: Romanian</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Statement -->
+    <div class="ep-section">
+        <div class="ep-section-title">Personal Statement</div>
+        <div class="ep-section-body">
+            <p class="ep-summary">
+                Results-driven Azure DevOps &amp; Cloud Engineer with <strong>7+ years of experience</strong> designing, implementing, and optimizing cloud-native infrastructure solutions. Expert in <strong>Terraform-based Infrastructure as Code</strong> for complex multi-environment Azure deployments. Proven track record building robust <strong>CI/CD pipelines</strong> with Azure DevOps and GitHub Actions, implementing <strong>Security by Design</strong> principles, and managing <strong>Entra ID identity security</strong> including Conditional Access Policies across multi-tenant environments. Strong background in networking, security compliance, and cost optimization. Demonstrated leadership with experience mentoring teams and driving DevOps culture.
+            </p>
+        </div>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="ep-section">
+        <div class="ep-section-title">Work Experience</div>
+        <div class="ep-section-body">
+
+            <div class="ep-job">
+                <div class="ep-job-dates">June 2023 – Present</div>
+                <div class="ep-job-content">
+                    <h3>DevOps Consultant | Azure Cloud Engineer</h3>
+                    <div class="ep-employer">Uniqa IT Services Wien <span>| B2B Contractor | Vienna, Austria (Remote)</span></div>
+                    <ul>
+                        <li>Architect and maintain complex Azure environments using <strong>Terraform and Terragrunt</strong>, managing VNets, NSGs, VPN across multi-environment setups (dev/staging/prod).</li>
+                        <li>Integrate automated testing with <strong>Checkov, Terratest, and SonarQube</strong> ensuring secure, compliant infrastructure code.</li>
+                        <li>Design and optimize <strong>Azure DevOps and GitHub Actions</strong> pipelines for streamlined CI/CD delivery.</li>
+                        <li>Manage <strong>Azure Key Vault</strong> with secret rotation; configure <strong>RBAC and PIM</strong> for least-privilege access.</li>
+                        <li>Develop <strong>Terraform modules</strong> for automated management of <strong>Entra ID Conditional Access Policies</strong> across multiple tenants; implement MFA, Named Locations, and Sign-in Risk conditions.</li>
+                        <li>Lead the <strong>operational transition of Conditional Access Policy management</strong> from DevOps to Cyber Security team: audit existing policies, author runbooks and handover documentation, conduct knowledge-transfer sessions, and ensure zero-disruption cutover.</li>
+                        <li>Design and implement an automated <strong>Landing Zone provisioning tool</strong> covering end-to-end onboarding: Subscription Creation, Azure DevOps Project Creation, IAM via Terraform, SPN Creation, Key Vault setup, Firewall Rules, and security scanning with <strong>SonarQube and Checkov</strong>.</li>
+                        <li>Architect and deliver an <strong>Azure Virtual Desktop (AVD)</strong> solution including full deployment and end-to-end automation of provisioning and scaling workflows.</li>
+                        <li>Support <strong>Data Management</strong> initiatives by provisioning infrastructure for <strong>Azure Data Factory</strong> and <strong>Azure Databricks</strong> pipelines with secure networking, RBAC, and CI/CD integration.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ep-job">
+                <div class="ep-job-dates">November 2020 – June 2023</div>
+                <div class="ep-job-content">
+                    <h3>DevOps Engineer / Team Lead</h3>
+                    <div class="ep-employer">Archive360 <span>| Cluj-Napoca, Romania</span></div>
+                    <ul>
+                        <li>Orchestrated Azure deployments using <strong>Bicep and ARM Templates</strong> for diverse client requirements, including <strong>Azure AD / Entra ID</strong> policy configurations and identity governance.</li>
+                        <li>Conducted <strong>capacity planning and cost optimization</strong> for efficient Azure SKU utilization.</li>
+                        <li>Designed <strong>Azure DevOps YAML pipelines</strong>; deployed and managed <strong>AKS clusters</strong> for containerized applications.</li>
+                        <li>Managed <strong>Azure Policy and Blueprints</strong> for compliance and governance.</li>
+                        <li>Implemented <strong>Azure Backup</strong> with Recovery Services Vaults for geo-redundant disaster recovery.</li>
+                        <li>Managed <strong>incident response within SLAs (P1–P4)</strong>; led stakeholder communications during outages.</li>
+                        <li>Promoted to <strong>Team Lead</strong> (Sept 2022), leading and mentoring a team of 7 engineers.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ep-job">
+                <div class="ep-job-dates">September 2018 – October 2020</div>
+                <div class="ep-job-content">
+                    <h3>DevOps Engineer</h3>
+                    <div class="ep-employer">Endava <span>| Cluj-Napoca, Romania</span></div>
+                    <ul>
+                        <li>Executed <strong>IaaS to PaaS migrations</strong> including Sitecore, reducing operational overhead significantly.</li>
+                        <li>Built CI/CD pipelines using <strong>Jenkins and Azure DevOps</strong> for efficient software delivery.</li>
+                        <li>Delivered end-to-end solutions using Azure IaaS/PaaS ensuring scalable, resilient architecture.</li>
+                        <li>Managed <strong>Azure Monitor and Log Analytics</strong> for performance and reliability management.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Education -->
+    <div class="ep-section">
+        <div class="ep-section-title">Education and Training</div>
+        <div class="ep-section-body">
+            <div class="ep-job">
+                <div class="ep-job-dates">2014 – 2018</div>
+                <div class="ep-job-content">
+                    <h3>Bachelor's Degree – Electronics, Telecommunications &amp; IT</h3>
+                    <div class="ep-employer">Technical University of Cluj-Napoca <span>| Cluj-Napoca, Romania</span></div>
+                    <ul>
+                        <li>Networking, Programming (C/C++, C#, Java), Telecommunications.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ep-job" style="margin-bottom:0;padding-bottom:0;border-bottom:none;">
+                <div class="ep-job-dates">2018</div>
+                <div class="ep-job-content">
+                    <h3>DevOps Internship</h3>
+                    <div class="ep-employer">Endava <span>| Cluj-Napoca, Romania</span></div>
+                    <ul>
+                        <li>AWS, Git, Jenkins, Bash scripting.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Skills -->
+    <div class="ep-section">
+        <div class="ep-section-title">Language Skills</div>
+        <div class="ep-section-body">
+            <table class="lang-table">
+                <thead>
+                    <tr>
+                        <th class="lang-name-col">Language</th>
+                        <th colspan="2">Understanding</th>
+                        <th colspan="2">Speaking</th>
+                        <th>Writing</th>
+                    </tr>
+                    <tr class="subheader">
+                        <td></td>
+                        <td>Listening</td>
+                        <td>Reading</td>
+                        <td>Spoken interaction</td>
+                        <td>Spoken production</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="lang-name">Romanian (Native)</td>
+                        <td>C2</td><td>C2</td><td>C2</td><td>C2</td><td>C2</td>
+                    </tr>
+                    <tr>
+                        <td class="lang-name">English (Fluent)</td>
+                        <td>C1</td><td>C1</td><td>C1</td><td>C1</td><td>C1</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size:8pt;color:#888;margin-top:6px;">Levels: A1/A2 Basic – B1/B2 Independent – C1/C2 Proficient (Common European Framework of Reference)</p>
+        </div>
+    </div>
+
+    <!-- Digital Skills -->
+    <div class="ep-section">
+        <div class="ep-section-title">Digital Skills</div>
+        <div class="ep-section-body">
+            <div class="ep-skills-grid">
+                <div class="ep-skill-item"><span class="sl">IaC</span><span class="sv">Terraform (Expert), Terragrunt, Bicep, ARM Templates, Ansible</span></div>
+                <div class="ep-skill-item"><span class="sl">CI/CD</span><span class="sv">Azure DevOps (YAML), GitHub Actions, Jenkins</span></div>
+                <div class="ep-skill-item"><span class="sl">Scripting</span><span class="sv">Bash, Python, PowerShell, Azure CLI</span></div>
+                <div class="ep-skill-item"><span class="sl">Security</span><span class="sv">Entra ID, Conditional Access, Key Vault, RBAC, PIM, OAuth 2.0, SAML</span></div>
+                <div class="ep-skill-item"><span class="sl">Monitoring</span><span class="sv">Azure Monitor, Log Analytics, App Insights, Prometheus, Grafana</span></div>
+                <div class="ep-skill-item"><span class="sl">Networking</span><span class="sv">VNets, NSGs, VPN Gateway, Azure Firewall, ExpressRoute</span></div>
+                <div class="ep-skill-item"><span class="sl">Containers</span><span class="sv">AKS, Container Instances, Azure Container Registry</span></div>
+                <div class="ep-skill-item"><span class="sl">AI / ML</span><span class="sv">Azure OpenAI Service, Cognitive Search, Azure AI Foundry</span></div>
+                <div class="ep-skill-item"><span class="sl">Compute</span><span class="sv">Azure Virtual Machines, App Services, Azure Functions</span></div>
+                <div class="ep-skill-item"><span class="sl">Virtualization</span><span class="sv">Azure Virtual Desktop, Citrix, VMware</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Information -->
+    <div class="ep-section">
+        <div class="ep-section-title">Additional Information</div>
+        <div class="ep-section-body" style="border-bottom:none;">
+            <div class="ep-row">
+                <span class="ep-row-label">Publications</span>
+                <span class="ep-row-value">Technical documentation and Root Cause Analysis (RCA) reports for incident resolution.</span>
+            </div>
+            <div class="ep-row">
+                <span class="ep-row-label">Leadership</span>
+                <span class="ep-row-value">Led and mentored a team of 7 DevOps engineers at Archive360 (Sept 2022 – June 2023).</span>
+            </div>
+            <div class="ep-row" style="margin-bottom:0;">
+                <span class="ep-row-label">Interests</span>
+                <span class="ep-row-value">Cloud security, infrastructure automation, Azure AI services, platform engineering.</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="ep-footer">
+        Europass CV format &nbsp;|&nbsp; Daniel-Cristian Avramut &nbsp;|&nbsp; April 2026
+    </div>
+
+</div>
+
+<button class="download-btn" onclick="window.print()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Download CV (Print / PDF)
+</button>
+
+</body>
+</html>
