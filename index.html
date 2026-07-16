@@ -77,6 +77,31 @@
             @page { margin: 8mm; }
             .skill-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .download-btn { display: none; }
+
+            /* Single-column layout so ATS parsers read the text top-to-bottom */
+            header,
+            .skills-container,
+            .tech-grid,
+            .two-col {
+                display: block;
+            }
+
+            .header-right {
+                text-align: left;
+                margin-top: 6px;
+            }
+
+            .header-right div {
+                justify-content: flex-start;
+            }
+
+            .skill-box {
+                margin-bottom: 6px;
+            }
+
+            .two-col > div {
+                margin-bottom: 14px;
+            }
         }
 
         /* Header */
