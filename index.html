@@ -427,7 +427,7 @@
     <section>
         <h2>Professional Summary</h2>
         <p class="summary">
-            Results-driven Azure DevOps &amp; Cloud Engineer with <strong>7+ years of experience</strong> designing, implementing, and optimizing cloud-native infrastructure solutions. Expert in <strong>Terraform-based Infrastructure as Code</strong> for complex multi-environment Azure deployments. Proven track record building robust <strong>CI/CD pipelines</strong> with Azure DevOps and GitHub Actions, implementing <strong>Security by Design</strong> principles, and managing <strong>Entra ID identity security</strong> including Conditional Access Policies across multi-tenant environments. <strong>Focused experience in Cloud Security</strong> (Entra ID Conditional Access, Privileged Identity Management), with deep expertise in CAP lifecycle management — from policy design and troubleshooting to operational transitions between teams. Strong background in networking, security compliance, and cost optimization. Demonstrated leadership with experience mentoring teams and driving DevOps culture.
+            Azure DevOps &amp; Cloud Engineer with <strong>7+ years of experience</strong>, most of it spent treating infrastructure as code: if it is not in <strong>Terraform</strong>, it does not ship. I build and maintain <strong>CI/CD pipelines</strong> in Azure DevOps and GitHub Actions across the full SDLC, and I enjoy the part many people skip, which is building, testing, and troubleshooting the components until the architecture actually works. Deep hands-on experience with <strong>Entra ID identity security</strong> (Conditional Access Policies, PIM) in multi-tenant environments, from policy design and troubleshooting to handing operations over to security teams. Working knowledge of <strong>Azure API Management (APIM)</strong>, networking, and cost optimization. Led and mentored a team of 7, but I am a builder first.
         </p>
     </section>
 
@@ -456,7 +456,7 @@
             </div>
             <div class="skill-box">
                 <h4>Containers & Compute</h4>
-                <p>Azure Kubernetes Service (AKS), Container Instances, ACR, VMs, App Services</p>
+                <p>Azure Kubernetes Service (AKS), Container Instances, ACR, VMs, App Services, API Management (APIM)</p>
             </div>
         </div>
     </section>
@@ -498,7 +498,7 @@
             </div>
             <div class="tech-item">
                 <span class="label">Compute</span>
-                <span class="value">Azure Virtual Machines, Azure App Services, Azure Functions</span>
+                <span class="value">Azure Virtual Machines, Azure App Services, Azure Functions, API Management (APIM)</span>
             </div>
                 <div class="tech-item">
                 <span class="label">Virtualization</span>
@@ -566,6 +566,33 @@
                 <li>Built CI/CD pipelines using <strong>Jenkins and Azure DevOps</strong> for efficient software delivery</li>
                 <li>Delivered end-to-end solutions using Azure IaaS/PaaS ensuring scalable, resilient architecture</li>
                 <li>Managed <strong>Azure Monitor and Log Analytics</strong> for performance and reliability management</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Personal Projects</h2>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>E-commerce Platform</h3>
+                <span class="date">Node.js | Terraform | GitHub Actions</span>
+            </div>
+            <ul class="compact-list">
+                <li>Built a Node.js e-commerce platform end to end: REST API, product catalog, cart, and checkout</li>
+                <li>Wrote the full Azure infrastructure in <strong>Terraform</strong>; every change goes through a <strong>GitHub Actions</strong> pipeline that runs plan, apply, and the application release, with no manual steps in between</li>
+                <li>Use the project as a testing ground for pipeline security scanning and multi-environment setups before bringing the same patterns into client work</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-header">
+                <h3>Event Booking Platform (Architecture)</h3>
+                <span class="date">Startup Collaboration</span>
+            </div>
+            <ul class="compact-list">
+                <li>Designed the cloud architecture for an event reservation application built by an early-stage startup: API layer, data model, authentication, and scaling approach</li>
+                <li>Kept the design deliberately small and cheap to run, with a clear path to grow once the product finds traction</li>
             </ul>
         </div>
     </section>
