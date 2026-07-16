@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel-Cristian Avramut - Azure DevOps Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #0078D4;
+            --primary-dark: #005a9e;
+            --primary-light: #e8f3fc;
+            --accent: #00b4d8;
+            --text-dark: #0f172a;
+            --text-medium: #334155;
+            --text-light: #64748b;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --shadow: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+            --radius: 12px;
+            --radius-sm: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-logo {
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: white; }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 65% 40%, rgba(0,120,212,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 15% 80%, rgba(0,180,216,0.12) 0%, transparent 45%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,120,212,0.18);
+            border: 1px solid rgba(0,120,212,0.4);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.4; transform: scale(1.4); }
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5.5vw, 60px);
+            font-weight: 800;
+            color: white;
+            letter-spacing: -1.5px;
+            line-height: 1.05;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .hero-summary {
+            font-size: 16px;
+            color: rgba(255,255,255,0.72);
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .hero-summary strong { color: white; font-weight: 600; }
+
+        .hero-contacts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 48px;
+        }
+
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.11);
+            color: rgba(255,255,255,0.75);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .contact-chip:hover {
+            background: rgba(255,255,255,0.11);
+            border-color: rgba(255,255,255,0.22);
+            color: white;
+        }
+
+        .contact-chip svg { width: 14px; height: 14px; opacity: 0.55; flex-shrink: 0; }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .stat-value {
+            font-size: 30px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── SHARED SECTION STYLES ── */
+        .section {
+            padding: 72px 24px;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            gap: 20px;
+            margin-bottom: 44px;
+        }
+
+        .section-meta { flex-shrink: 0; }
+
+        .section-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.5px;
+            line-height: 1;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+            margin-bottom: 4px;
+        }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            border-color: rgba(0,120,212,0.25);
+        }
+
+        .skill-card:hover::before { opacity: 1; }
+
+        .skill-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--primary-light);
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 19px;
+        }
+
+        .skill-card h4 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-card p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.55;
+        }
+
+        /* ── TECH SKILLS (dark bg) ── */
+        .tech-section {
+            background: var(--bg-dark);
+            padding: 72px 24px;
+        }
+
+        .tech-section .section-tag  { color: var(--accent); }
+        .tech-section .section-title { color: white; }
+        .tech-section .section-line  { background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, transparent 100%); }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .tech-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: var(--radius-sm);
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .tech-item:hover {
+            background: rgba(255,255,255,0.065);
+            border-color: rgba(0,120,212,0.4);
+        }
+
+        .tech-item .label {
+            font-weight: 700;
+            color: var(--accent);
+            min-width: 90px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .tech-item .value {
+            color: rgba(255,255,255,0.68);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* ── EXPERIENCE ── */
+        .experience-section { background: var(--bg-light); }
+
+        .timeline {
+            position: relative;
+            padding-left: 36px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 9px; top: 10px; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary) 0%, transparent 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px; top: 14px;
+            width: 10px; height: 10px;
+            background: var(--primary);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(0,120,212,0.2);
+        }
+
+        .timeline-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .timeline-card:hover {
+            box-shadow: var(--shadow);
+            border-color: rgba(0,120,212,0.2);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-header h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .timeline-date {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .timeline-company {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .timeline-company span {
+            font-weight: 400;
+            color: var(--text-light);
+        }
+
+        .compact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .compact-list li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-medium);
+            line-height: 1.65;
+        }
+
+        .compact-list li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .compact-list li strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* ── BOTTOM (Education + Additional) ── */
+        .bottom-section { background: white; }
+
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+        }
+
+        .card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .card .school {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .card > p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card ul li {
+            padding: 9px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-medium);
+            line-height: 1.55;
+        }
+
+        .card ul li:last-child { border-bottom: none; }
+        .card ul li strong { color: var(--text-dark); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--bg-dark);
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .skills-grid     { grid-template-columns: 1fr 1fr; }
+            .tech-grid       { grid-template-columns: 1fr; }
+            .bottom-grid     { grid-template-columns: 1fr; }
+            .hero-stats      { gap: 28px; }
+            .nav-links       { display: none; }
+            .timeline-header { flex-direction: column; gap: 8px; }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .hero-stats  { flex-wrap: wrap; gap: 20px; }
+        }
+
+        @media print {
+            nav { display: none; }
+            .hero { padding: 40px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <div class="nav-logo">D<span>.</span>Avramut</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#tech">Tech Stack</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="about">
+        <div class="hero-inner">
+            <div class="hero-badge">Available for opportunities</div>
+            <h1>Daniel-Cristian<br><span>Avramut</span></h1>
+            <div class="hero-subtitle">Senior Azure DevOps Engineer</div>
+            <p class="hero-summary">
+                Results-driven Azure DevOps &amp; Cloud Engineer with <strong>7+ years of experience</strong>
+                designing, implementing, and optimizing cloud-native infrastructure solutions.
+                Expert in <strong>Terraform-based Infrastructure as Code</strong>, <strong>CI/CD pipelines</strong>,
+                and <strong>Entra ID identity security</strong> including Conditional Access Policies
+                across multi-tenant environments.
+            </p>
+            <div class="hero-contacts">
+                <a href="tel:+40741640401" class="contact-chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                    +40 741 640 401
+                </a>
+                <a href="mailto:daniel.avramut@smartechcs.com" class="contact-chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    daniel.avramut@smartechcs.com
+                </a>
+                <span class="contact-chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Cluj-Napoca, Romania
+                </span>
+                <span class="contact-chip">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+                    English (Fluent) | Romanian (Native)
+                </span>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-value">7+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div>
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Companies</div>
+                </div>
+                <div>
+                    <div class="stat-value">Azure</div>
+                    <div class="stat-label">Primary Platform</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE COMPETENCIES -->
+    <section class="section" id="skills">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-meta">
+                    <div class="section-tag">Expertise</div>
+                    <div class="section-title">Core Competencies</div>
+                </div>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">🏗️</div>
+                    <h4>Infrastructure as Code</h4>
+                    <p>Terraform, Terragrunt, Bicep, ARM Templates, Ansible</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚙️</div>
+                    <h4>CI/CD &amp; Automation</h4>
+                    <p>Azure DevOps Pipelines, GitHub Actions, Python, Bash, PowerShell, Azure CLI</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔒</div>
+                    <h4>Security &amp; Compliance</h4>
+                    <p>Entra ID, Azure Key Vault, RBAC, PIM, Conditional Access Policies, MFA, Azure Policy, Checkov, SonarQube</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <h4>Observability</h4>
+                    <p>Azure Monitor, Log Analytics, Application Insights, Prometheus, Grafana, Alerting</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🌐</div>
+                    <h4>Networking &amp; Security</h4>
+                    <p>VNets, NSGs, VPN Gateway, Azure Firewall, ExpressRoute, Load Balancers, TLS</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🐳</div>
+                    <h4>Containers &amp; Compute</h4>
+                    <p>Azure Kubernetes Service (AKS), Container Instances, ACR, VMs, App Services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section class="tech-section" id="tech">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-meta">
+                    <div class="section-tag">Stack</div>
+                    <div class="section-title">Technical Skills</div>
+                </div>
+                <div class="section-line"></div>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <span class="label">IaC</span>
+                    <span class="value">Terraform (Expert), Terragrunt, Bicep, ARM Templates</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">CI/CD</span>
+                    <span class="value">Azure DevOps (YAML), GitHub Actions, Jenkins</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">Scripting</span>
+                    <span class="value">Bash, Python, PowerShell, Azure CLI</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">Security</span>
+                    <span class="value">Entra ID, Conditional Access, Key Vault, RBAC, PIM, OAuth 2.0, SAML</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">Monitoring</span>
+                    <span class="value">Azure Monitor, Log Analytics, App Insights</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">Networking</span>
+                    <span class="value">VNets, NSGs, VPN, Firewall, ExpressRoute</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">Containers</span>
+                    <span class="value">AKS, Container Instances, Container Registry</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">AI/ML</span>
+                    <span class="value">Azure OpenAI Service, Cognitive Search, Azure AI Foundry</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">Compute</span>
+                    <span class="value">Azure Virtual Machines, App Services, Azure Functions</span>
+                </div>
+                <div class="tech-item">
+                    <span class="label">Virtualization</span>
+                    <span class="value">Azure Virtual Desktop, Citrix, VMware</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section experience-section" id="experience">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-meta">
+                    <div class="section-tag">Career</div>
+                    <div class="section-title">Professional Experience</div>
+                </div>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3>DevOps Consultant | Azure Cloud Engineer</h3>
+                            <span class="timeline-date">June 2023 – Present</span>
+                        </div>
+                        <div class="timeline-company">Uniqa IT Services Wien <span>| B2B Contractor</span></div>
+                        <ul class="compact-list">
+                            <li>Architect and maintain complex Azure environments using <strong>Terraform and Terragrunt</strong>, managing VNets, NSGs, VPN across multi-environment setups (dev/staging/prod)</li>
+                            <li>Integrate automated testing with <strong>Checkov, Terratest, and SonarQube</strong> ensuring secure, compliant infrastructure code</li>
+                            <li>Design and optimize <strong>Azure DevOps and GitHub Actions</strong> pipelines for streamlined CI/CD delivery</li>
+                            <li>Manage <strong>Azure Key Vault</strong> with secret rotation; configure <strong>RBAC and PIM</strong> for least-privilege access</li>
+                            <li>Develop <strong>Terraform modules</strong> for automated management of <strong>Entra ID Conditional Access Policies</strong> across multiple tenants; implement MFA, Named Locations, and Sign-in Risk conditions; enforce compliance via Azure Policy and Blueprints</li>
+                            <li>Lead the <strong>operational transition of Conditional Access Policy management</strong> from DevOps to Cyber Security team: audit existing policies, author runbooks and handover documentation, conduct knowledge-transfer sessions, and ensure zero-disruption cutover</li>
+                            <li>Perform ongoing <strong>CAP maintenance</strong>: troubleshoot access failures, implement new policies aligned with evolving security requirements, and continuously improve policies based on sign-in risk analytics</li>
+                            <li>Lead monitoring with <strong>Azure Monitor, Log Analytics, and App Insights</strong>; configure alerting for 24/7 service health</li>
+                            <li>Design and implement an automated <strong>Landing Zone provisioning tool</strong> covering end-to-end onboarding: Subscription Creation, Azure DevOps Project Creation, IAM via Terraform Modules, SPN Creation, Key Vault setup, Firewall Rules, and integrated security scanning with <strong>SonarQube and Checkov</strong></li>
+                            <li>Architect and deliver an <strong>Azure Virtual Desktop (AVD)</strong> solution — including infrastructure design, full deployment, and end-to-end automation of provisioning and scaling workflows</li>
+                            <li>Support <strong>Data Management</strong> initiatives by provisioning infrastructure for <strong>Azure Data Factory</strong> and <strong>Azure Databricks</strong> pipelines, ensuring secure networking, RBAC, and CI/CD integration</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3>DevOps Engineer / Team Lead</h3>
+                            <span class="timeline-date">November 2020 – June 2023</span>
+                        </div>
+                        <div class="timeline-company">Archive360</div>
+                        <ul class="compact-list">
+                            <li>Orchestrated Azure deployments using <strong>Bicep and ARM Templates</strong> for diverse client requirements, including <strong>Azure AD / Entra ID</strong> policy configurations and identity governance</li>
+                            <li>Conducted <strong>capacity planning and cost optimization</strong> for efficient Azure SKU utilization</li>
+                            <li>Designed <strong>Azure DevOps YAML pipelines</strong>; deployed and managed <strong>AKS clusters</strong> for containerized apps</li>
+                            <li>Managed <strong>Azure Policy and Blueprints</strong> for compliance and governance</li>
+                            <li>Implemented <strong>Azure Backup</strong> with Recovery Services Vaults for geo-redundant disaster recovery</li>
+                            <li>Managed <strong>incident response within SLAs (P1–P4)</strong>; led stakeholder communications during outages</li>
+                            <li>Promoted to <strong>Team Lead</strong> (Sept 2022), leading and mentoring a team of 7 engineers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <h3>DevOps Engineer</h3>
+                            <span class="timeline-date">September 2018 – October 2020</span>
+                        </div>
+                        <div class="timeline-company">Endava</div>
+                        <ul class="compact-list">
+                            <li>Executed <strong>IaaS to PaaS migrations</strong> including Sitecore, reducing operational overhead significantly</li>
+                            <li>Built CI/CD pipelines using <strong>Jenkins and Azure DevOps</strong> for efficient software delivery</li>
+                            <li>Delivered end-to-end solutions using Azure IaaS/PaaS ensuring scalable, resilient architecture</li>
+                            <li>Managed <strong>Azure Monitor and Log Analytics</strong> for performance and reliability management</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION & ADDITIONAL -->
+    <section class="section bottom-section" id="education">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-meta">
+                    <div class="section-tag">Background</div>
+                    <div class="section-title">Education &amp; Additional</div>
+                </div>
+                <div class="section-line"></div>
+            </div>
+            <div class="bottom-grid">
+                <div class="card">
+                    <h4>Technical University of Cluj-Napoca</h4>
+                    <div class="school">Faculty of Electronics, Telecommunications &amp; IT</div>
+                    <p>Networking, Programming (C/C++, C#, Java), Telecommunications</p>
+                </div>
+                <div class="card">
+                    <ul>
+                        <li><strong>DevOps Internship</strong> – Endava (2018): AWS, Git, Jenkins, Bash</li>
+                        <li><strong>Azure AI:</strong> Azure OpenAI Service, Cognitive Search</li>
+                        <li>Strong problem-solving and troubleshooting expertise</li>
+                        <li>Technical documentation and RCA report experience</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Daniel-Cristian Avramut &middot; <a href="mailto:daniel.avramut@smartechcs.com">daniel.avramut@smartechcs.com</a> &middot; Cluj-Napoca, Romania</p>
+    </footer>
+
+</body>
+</html>
